@@ -55,3 +55,14 @@ class FileStorage:
                     self.new(eval(name)(**val))
         except FileNotFoundError:
             return
+        
+    def delete(self, obj=None):
+        """delete an object"""
+        try:
+            del self.__objects["{}.{}".format(type(obj).__name__, obj.id)]
+        except (AttributeError, KeyError):
+            pass
+        
+    def close(self):
+        """reload"""
+        self.reload()
