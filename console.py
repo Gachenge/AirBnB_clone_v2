@@ -184,6 +184,45 @@ class HBNBCommand(cmd.Cmd):
         except ValueError:
             print("** value missing **")
 
+    def strip(self, args):
+        """strips the arguments and return a string"""
+        nlist = []
+        nlist.append(args[0])
+        try:
+            mydict = eval(args[1][args[1].find('{'):args[1].find('}')+1])
+        except Exception:
+            mydict = None
+        if type(mydict) == dict:
+            stri = args[1][args[1].find('(')+1:args[1].find(')')]
+            nlist.append((stri.split(', '))[0]).strip('"')
+            nlist.append(mydict)
+            return nlist
+        stri = args[1][args[1].find('(')+1:args[1].find(')')]
+        nlist.append(" ".join(stri.split(", ")))
+        return " ".join(i for i in nlist)
+
+    def default(self, args):
+        """default case"""
+        nlist = args.split('.')
+        if len(nlist) >= 2:
+            if (nlist[1] == "all()"):
+                self.do_all(nlist[0])
+            elif nlist[1][:4] == "show":
+                self.do_show(self.strip(nlist))
+            elif nlist[1][:7] == "destroy":
+                self.do_destroy(self.strip(nlist))
+            elif nlist[1][:6] == "update":
+                args = self.strip(nlist)
+                if isinstance(args, list):
+                    obj = storage.all()
+                    key = args[0] + ' ' + args[1]
+                    for key, value in args[2].items():
+                        self.do_update(key + ' "{}" "{}"'.format(key, value))
+                else:
+                    self.do_update(args)
+        else:
+            cmd.Cmd.default(self, args)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
