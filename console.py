@@ -71,12 +71,11 @@ class HBNBCommand(cmd.Cmd):
                 storage.new(obj)
             print(obj.id)
             obj.save()
-            
+
         except SyntaxError:
             print("** class name missing **")
         except NameError:
             print("** class doesn't exist **")
-           
 
     def do_show(self, args):
         """Prints the string representation of an instance"""
@@ -139,11 +138,11 @@ class HBNBCommand(cmd.Cmd):
             arg = args.split(" ")
             if arg[0] not in self.__classes:
                 raise NameError()
-            
+
             new = eval(arg[0])
             obj = storage.all(new)
             print([obj[key].__str__() for key in obj])
-            
+
         except NameError:
             print("** class doesn't exist **")
 
@@ -171,7 +170,7 @@ class HBNBCommand(cmd.Cmd):
             except Exception:
                 value.__dict__[nlist[2]] = nlist[3]
                 value.save()
-        
+
         except SyntaxError:
             print("** class name missing **")
         except NameError:

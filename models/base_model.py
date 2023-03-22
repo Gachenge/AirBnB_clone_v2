@@ -15,18 +15,15 @@ class BaseModel:
         created_at: first call of this should be have a time stamp
         updated_at: renewable time stamp
         """
-
+        self.id = str(uuid4())
+        self.created_at = self.updated_at = datetime.now()
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
-        else:
-            self.id = str(uuid4())
-            self.created_at = self.updated_at = datetime.now()
-            models.storage.new(self)
-
+        
     def __str__(self):
         """return the string representation"""
         return "[{}] ({}) {}".format(type(self).__name__, self.id,
