@@ -4,6 +4,7 @@ import unittest
 import pep8
 from models.place import Place
 
+
 class Place_testing(unittest.TestCase):
     """ check BaseModel """
 
@@ -17,7 +18,7 @@ class Place_testing(unittest.TestCase):
 
     def test_cid(self):
         self.assertEqual(type(Place().city_id), str)
-    
+
     def test_uid(self):
         self.assertEqual(type(Place().user_id), str)
 
@@ -35,10 +36,10 @@ class Place_testing(unittest.TestCase):
 
     def test_maxgu(self):
         self.assertEqual(type(Place().max_guest), int)
-    
+
     def test_pric(self):
         self.assertEqual(type(Place().price_by_night), int)
-    
+
     def test_lat(self):
         self.assertEqual(type(Place().latitude), float)
 

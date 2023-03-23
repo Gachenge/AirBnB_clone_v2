@@ -36,7 +36,6 @@ class FileStorage:
         key = obj.__class__.__name__ + "." + obj.id
         self.__objects[key] = obj
 
-
     def save(self):
         """serialises __objects to json file"""
         obj = self.__objects
@@ -55,14 +54,14 @@ class FileStorage:
                     self.new(eval(name)(**val))
         except FileNotFoundError:
             return
-        
+
     def delete(self, obj=None):
         """delete an object"""
         try:
             del self.__objects["{}.{}".format(type(obj).__name__, obj.id)]
         except (AttributeError, KeyError):
             pass
-        
+
     def close(self):
         """reload"""
         self.reload()

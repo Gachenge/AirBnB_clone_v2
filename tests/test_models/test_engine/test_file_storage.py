@@ -29,7 +29,8 @@ class TestFile(unittest.TestCase):
 
     def test_new(self):
         a = BaseModel()
-        self.assertIn(a.__class__.__name__ + '.' + a.id, models.storage.all().keys())
+        self.assertIn(a.__class__.__name__ + '.' + a.id,
+                      models.storage.all().keys())
 
     def test_new_no_arg(self):
         with self.assertRaises(AttributeError):
@@ -53,10 +54,11 @@ class TestFile(unittest.TestCase):
         a = FileStorage()
         with open('file.json', 'w') as f:
             f.write("{}")
-        with open ('file.json') as f:
+        with open('file.json') as f:
             for i in f:
                 self.assertEqual(i, "{}")
         self.assertIs(a.reload(), None)
+
 
 if __name__ == '__main__':
     unittest.main()

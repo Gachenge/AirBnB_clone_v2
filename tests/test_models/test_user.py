@@ -4,6 +4,7 @@ import unittest
 import pep8
 from models.user import User
 
+
 class User_testing(unittest.TestCase):
     """ check BaseModel """
 
@@ -26,7 +27,6 @@ class User_testing(unittest.TestCase):
 
     def test_lname(self):
         self.assertEqual(type(User().last_name), str)
-
 
 
 if __name__ == "__main__":

@@ -15,13 +15,13 @@ class TestBase(unittest.TestCase):
 
     def test_not(self):
         self.assertIsNotNone(type(BaseModel().id))
-        
+
     def test_uniqid(self):
         self.assertNotEqual(BaseModel().id, BaseModel().id)
-    
+
     def test_stor(self):
         self.assertIn(BaseModel(), models.storage.all().values())
-    
+
     def test_isidstr(self):
         self.assertEqual(type(BaseModel().id), str)
 
@@ -53,7 +53,8 @@ class TestBase(unittest.TestCase):
 
     def test_strfun(self):
         a = BaseModel()
-        self.assertEqual(a.__str__(), "[BaseModel] ({}) {}".format(a.id, a.__dict__.copy()))
+        self.assertEqual(a.__str__(), "[BaseModel] ({}) {}"
+                         .format(a.id, a.__dict__.copy()))
 
     def test_dict(self):
         a = BaseModel()
@@ -64,13 +65,13 @@ class TestBase(unittest.TestCase):
         self.assertNotEqual(b["updated_at"], d["updated_at"])
 
     def test_kwargs(self):
-        a = BaseModel(id = "12345", created_at = datetime.now().isoformat(), updated_at = datetime.now().isoformat())
+        a = BaseModel(id="12345", created_at=datetime.now().isoformat(),
+                      updated_at=datetime.now().isoformat())
         self.assertEqual(a.id, '12345')
 
     def test_nkwargs(self):
         with self.assertRaises(TypeError):
-            a = BaseModel(id = None, created_at = None, updated_at = None)
-
+            a = BaseModel(id=None, created_at=None, updated_at=None)
 
 
 if __name__ == "__main__":
