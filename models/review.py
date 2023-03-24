@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 """review class inherits from basemodel"""
-from sqlalchemy.ext.declarative import declarative_base
-from models.base_model import BaseModel, Base
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from models.base_model import BaseModel
+from sqlalchemy import Column
+from sqlalchemy import Column
+from sqlalchemy import ForeignKey
+from sqlalchemy import String
+from sqlalchemy.orm import relationship
 
 
 class Review(BaseModel):

@@ -1,11 +1,18 @@
 #!/usr/bin/python3
 """class place inherits from basemodel"""
-from sqlalchemy.ext.declarative import declarative_base
-from models.base_model import BaseModel, Base
-from sqlalchemy import Column, Table, String, Integer, Float, ForeignKey
+from models.base_model import BaseModel
+from sqlalchemy import Column
 from sqlalchemy.orm import relationship
 from os import getenv
 import models
+from models.base_model import Base
+from models.amenity import Amenity
+from models.review import Review
+from sqlalchemy import Float
+from sqlalchemy import ForeignKey
+from sqlalchemy import Integer
+from sqlalchemy import String
+from sqlalchemy import Table
 
 
 place_amenity = Table("place_amenity", Base.metadata,
@@ -24,10 +31,10 @@ class Place(BaseModel):
     city_id: max 60 chars, foreign key
     user_id: max 128 chars, foreign key
     name: max 128 chars, not null
-    
     """
+
     __tablename__ = "places"
-    city_id =  Column(String(60), ForeignKey("cities.id"), nullable=False)
+    city_id = Column(String(60), ForeignKey("cities.id"), nullable=False)
     user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
     name = Column(String(128), nullable=False)
     description = Column(String(1024))
@@ -38,8 +45,8 @@ class Place(BaseModel):
     latitude = Column(Float)
     longitude = Column(Float)
     amenity_ids = []
-    
-     if getenv("HBNB_TYPE_STORAGE") == "db":
+
+    if getenv("HBNB_TYPE_STORAGE") == "db":
         reviews = relationship("Review", cascade='all, delete, delete-orphan',
                                backref="place")
 
@@ -50,7 +57,7 @@ class Place(BaseModel):
         @property
         def reviews(self):
             """ Returns list of reviews.id """
-            var = models.storage.all()
+            var = models.storage.all(Review)
             lista = []
             result = []
             for key in var:

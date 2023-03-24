@@ -4,8 +4,9 @@ from sqlalchemy.ext.declarative import declarative_base
 import models
 from uuid import uuid4
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime
-
+from sqlalchemy import Column
+from sqlalchemy import String
+from sqlalchemy import DateTime
 
 Base = declarative_base()
 
@@ -16,12 +17,11 @@ class BaseModel:
     created_at - time the model was created
     updated_at - last time edited
     """
-    
+
     id = Column(String(60), unique=True, nullable=False, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
     updated_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
-    
-    
+
     def __init__(self, *args, **kwargs):
         """initialise all attributes to be used
         id: should be unique every time and generated using uuid4
@@ -59,9 +59,8 @@ class BaseModel:
         if '_sa_instance_state' in my_dict.keys():
             del myDict['_sa_instance_state']
         return myDict
-    
+
     def delete(self):
         """ delete object
         """
         models.storage.delete(self)
-    

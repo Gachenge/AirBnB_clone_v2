@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, String
-from models.place import place_amenity
+from sqlalchemy import Column
+from models.base_model import Base
+from sqlalchemy import String
+
 """amenity class inherits from Basemodel"""
 
 
-class Amenity(BaseModel):
+class Amenity(BaseModel, Base):
     """has just a name attribute
     name has a maximum 128 characters
     the column is not nullable

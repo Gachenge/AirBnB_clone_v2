@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """class state also inherits from BaseModel"""
-from models.base_model import BaseModel, Base
-from sqlalchemy.ext.declarative import declarative_base
+from models.base_model import BaseModel
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column
 import models
 from models.city import City
 import shlex
+from models.base_model import Base
+from sqlalchemy import String
 
 
 class State(BaseModel, Base):

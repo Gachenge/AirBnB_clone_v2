@@ -36,42 +36,42 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-          """query on the current database session (self.__session)
-          all objects depending of the class name (argument cls)"""
+        """query on the current database session (self.__session)
+        all objects depending of the class name (argument cls)"""
 
-          if cls is None:
-              obj = self.__session.query(User).all()
-              obj.extend(self.__session.query(State).all())
-              obj.extend(self.__session.query(City).all())
-              obj.extend(self.__session.query(Amenity).all())
-              obj.extend(self.__session.query(Place).all())
-              obj.extend(self.__session.query(Review).all())
-          else:
-              if type(cls) == str:
-                  cls = eval(cls)
-                  obj = self.__session.query(cls)
-                  return {"{}.{}".format(type(k).__name__, k.id): k for k in obj}
-    
+        if cls is None:
+            obj = self.__session.query(User).all()
+            obj.extend(self.__session.query(State).all())
+            obj.extend(self.__session.query(City).all())
+            obj.extend(self.__session.query(Amenity).all())
+            obj.extend(self.__session.query(Place).all())
+            obj.extend(self.__session.query(Review).all())
+        else:
+            if type(cls) == str:
+                cls = eval(cls)
+            obj = self.__session.query(cls)
+        return {"{}.{}".format(type(k).__name__, k.id): k for k in obj}
+
     def new(self, obj):
         """add a new obj to the database"""
         self.__session.add(obj)
-        
+
     def save(self):
         """save the changes"""
         self.__session.commit()
-        
+
     def delete(self, obj=None):
         """delete object from the current database session"""
         if obj is not None:
             self.__session.delete(obj)
-            
+
     def reload(self):
         """create all tables in the database (feature of SQLAlchemy) """
         Base.metadata.create_all(self.__engine)
         session = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session)
         self.__session = Session()
-        
+
     def close(self):
         """close the current session"""
         self.__session.close()
