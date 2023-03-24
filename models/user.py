@@ -4,9 +4,10 @@ from models.base_model import BaseModel
 from sqlalchemy import Column
 from sqlalchemy.orm import relationship
 from sqlalchemy import String
+from models.base_model import Base
 
 
-class User(BaseModel):
+class User(BaseModel, Base):
     """ define the user class that inherits from base model
     email: max 128 chars not null
     password: max 128 chars not null
@@ -18,7 +19,5 @@ class User(BaseModel):
     password = Column(String(128), nullable=False)
     first_name = Column(String(128))
     last_name = Column(String(128))
-    places = relationship("Place", cascade='all, delete, delete-orphan',
-                          backref="user")
-    reviews = relationship("Review", cascade='all, delete, delete-orphan',
-                           backref="user")
+    places = relationship("Place", backref="user", cascade="delete")
+    reviews = relationship("Review", backref="user", cascade="delete")

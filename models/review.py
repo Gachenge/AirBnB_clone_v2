@@ -2,13 +2,13 @@
 """review class inherits from basemodel"""
 from models.base_model import BaseModel
 from sqlalchemy import Column
-from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import String
 from sqlalchemy.orm import relationship
+from models.base_model import Base
 
 
-class Review(BaseModel):
+class Review(BaseModel, Base):
     """has attributes place_id, user_id and text
     text: max 1024 chars, not null
     place_id: max 60 chars, foreign key
