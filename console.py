@@ -35,6 +35,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """to catch the end of file and control+ D"""
+        print("")
         return True
 
     def do_quit(self, line):

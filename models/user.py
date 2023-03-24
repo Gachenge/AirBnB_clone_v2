@@ -8,7 +8,12 @@ from models.place import Place
 from models.review import Review
 
 class User(BaseModel):
-    """ define the user class that inherits from base model"""
+    """ define the user class that inherits from base model
+    email: max 128 chars not null
+    password: max 128 chars not null
+    first_name: max 128 chars
+    """
+
     __tablename__ = "users"
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)

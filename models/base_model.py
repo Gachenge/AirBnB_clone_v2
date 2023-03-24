@@ -11,7 +11,11 @@ Base = declarative_base()
 
 
 class BaseModel:
-    """this class will define all other objects and attributes"""
+    """this class will define all other objects and attributes
+    id - the model id
+    created_at - time the model was created
+    updated_at - last time edited
+    """
     
     id = Column(String(60), unique=True, nullable=False, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))

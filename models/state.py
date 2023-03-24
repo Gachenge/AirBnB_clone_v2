@@ -21,6 +21,7 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
+        """property setter"""
         var = models.storage.all()
         lista = []
         result = []

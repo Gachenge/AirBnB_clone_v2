@@ -8,7 +8,12 @@ from sqlalchemy.orm import relationship
 from models.place import Place
 
 class City(BaseModel, Base):
-    """has attributes state id and name"""
+    """has attributes state id and name
+    city inherits from Basemodel
+    has attributes:
+        name: maximum 128 characters, not nullable
+        state_id: maximum 60 characters and serves as the foreign key
+    """
     
     __tablename__ = "cities"
     name = Column(String(128), nullable=False)

@@ -20,7 +20,12 @@ place_amenity = Table("place_amenity", Base.metadata,
 
 
 class Place(BaseModel):
-    """has more public class attributes"""
+    """has more public class attributes
+    city_id: max 60 chars, foreign key
+    user_id: max 128 chars, foreign key
+    name: max 128 chars, not null
+    
+    """
     __tablename__ = "places"
     city_id =  Column(String(60), ForeignKey("cities.id"), nullable=False)
     user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
