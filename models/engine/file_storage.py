@@ -9,6 +9,7 @@ from models.place import Place
 from models.state import State
 from models.city import City
 from models.review import Review
+import shlex
 
 
 class FileStorage:
@@ -21,6 +22,7 @@ class FileStorage:
 
     def all(self, cls=None):
         """returns a dictionary __objects"""
+        dic = {}
         if cls:
             if isinstance(cls, str):
                 cls = eval(cls)
