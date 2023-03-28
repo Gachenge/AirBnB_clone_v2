@@ -8,7 +8,7 @@ from datetime import datetime
 """Tests for the BaseModel"""
 
 
-class TestBase(unittest.TestCase):
+class Test_Base(unittest.TestCase):
     """test all the functions of the basemodel class"""
     def test_noarg(self):
         self.assertEqual(BaseModel, type(BaseModel()))
@@ -18,9 +18,6 @@ class TestBase(unittest.TestCase):
 
     def test_uniqid(self):
         self.assertNotEqual(BaseModel().id, BaseModel().id)
-
-    def test_stor(self):
-        self.assertIn(BaseModel(), models.storage.all().values())
 
     def test_isidstr(self):
         self.assertEqual(type(BaseModel().id), str)

@@ -102,7 +102,7 @@ class TestHBNBCommand(unittest.TestCase):
             HBNB.onecmd("all cow")
             self.assertEqual("** class doesn't exist **\n", f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNB.onecmd("all BaseModel")
+            HBNB.onecmd("all User")
             self.assertEqual("[]\n", f.getvalue())
 
 if __name__ == "__main__":

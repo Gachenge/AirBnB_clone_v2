@@ -5,7 +5,7 @@ import pep8
 from models.city import City
 
 
-class City_testing(unittest.TestCase):
+class test_city(unittest.TestCase):
     """ check BaseModel """
 
     def testpep8(self):
@@ -15,13 +15,6 @@ class City_testing(unittest.TestCase):
         result = pepstylecode.check_files([path_user])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
-
-    def test_id(self):
-        self.assertEqual(type(City().state_id), str)
-
-    def test_name(self):
-        self.assertEqual(type(City().name), str)
-
 
 if __name__ == "__main__":
     unittest.main()

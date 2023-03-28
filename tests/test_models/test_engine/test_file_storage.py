@@ -27,11 +27,6 @@ class TestFile(unittest.TestCase):
         a = FileStorage()
         self.assertEqual(a.all(), FileStorage._FileStorage__objects)
 
-    def test_new(self):
-        a = BaseModel()
-        self.assertIn(a.__class__.__name__ + '.' + a.id,
-                      models.storage.all().keys())
-
     def test_new_no_arg(self):
         with self.assertRaises(AttributeError):
             models.storage.new(None)

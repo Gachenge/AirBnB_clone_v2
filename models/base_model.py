@@ -29,16 +29,14 @@ class BaseModel:
         updated_at: renewable time stamp
         """
 
+        self.id = str(uuid4())
+        self.created_at = self.updated_at = datetime.utcnow()
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
-        else:
-            self.id = str(uuid4())
-            self.created_at = self.updated_at = datetime.now()
-            models.storage.new(self)
 
     def __str__(self):
         """return the string representation"""
@@ -48,6 +46,7 @@ class BaseModel:
     def save(self):
         """updates the updated_at time stamp"""
         self.updated_at = datetime.now()
+        models.storage.new(self)
         models.storage.save()
 
     def to_dict(self):
@@ -56,8 +55,6 @@ class BaseModel:
         myDict["__class__"] = str(type(self).__name__)
         myDict["created_at"] = self.created_at.isoformat()
         myDict["updated_at"] = self.updated_at.isoformat()
-        if '_sa_instance_state' in my_dict.keys():
-            del myDict['_sa_instance_state']
         return myDict
 
     def delete(self):

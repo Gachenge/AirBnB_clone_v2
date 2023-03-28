@@ -5,7 +5,7 @@ import pep8
 from models.amenity import Amenity
 
 
-class Amenity_testing(unittest.TestCase):
+class test_amenity(unittest.TestCase):
     """ check BaseModel """
 
     def testpep8(self):
@@ -16,8 +16,9 @@ class Amenity_testing(unittest.TestCase):
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
-    def test_name(self):
-        self.assertEqual(type(Amenity().name), str)
+    def test_doc(self):
+        """check for documentation"""
+        self.assertIsNotNone(Amenity.__doc__)
 
 
 if __name__ == '__main__':

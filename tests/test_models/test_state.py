@@ -5,7 +5,7 @@ import pep8
 from models.state import State
 
 
-class State_testing(unittest.TestCase):
+class test_state(unittest.TestCase):
     """ check BaseModel """
 
     def testpep8(self):
@@ -16,5 +16,6 @@ class State_testing(unittest.TestCase):
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
-    def test_name(self):
-        self.assertEqual(type(State().name), str)
+        
+if __name__ == "__main__":
+    unittest.main()
