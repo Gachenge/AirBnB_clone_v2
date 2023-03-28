@@ -7,6 +7,7 @@ import models
 from io import StringIO
 from unittest.mock import patch
 from console import HBNBCommand
+from models.engine.db_storage import DBStorage
 
 
 class TestHBNBCommand(unittest.TestCase):
@@ -92,7 +93,17 @@ class TestHBNBCommand(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             HBNB.onecmd("destroy BaseModel cow")
             self.assertEqual("** no instance found **\n", f.getvalue())
-
+            
+    @unittest.skipIf(type(models.storage) == DBStorage, "Test storage")
+    def test_all(self):
+        """the output of all command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNB = HBNBCommand()
+            HBNB.onecmd("all cow")
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNB.onecmd("all BaseModel")
+            self.assertEqual("[]\n", f.getvalue())
 
 if __name__ == "__main__":
     unittest.main()

@@ -22,7 +22,6 @@ class FileStorage:
 
     def all(self, cls=None):
         """returns a dictionary __objects"""
-        dic = {}
         if cls:
             if isinstance(cls, str):
                 cls = eval(cls)
@@ -55,7 +54,7 @@ class FileStorage:
                     del val["__class__"]
                     self.new(eval(name)(**val))
         except FileNotFoundError:
-            return
+            pass
 
     def delete(self, obj=None):
         """delete an object"""
