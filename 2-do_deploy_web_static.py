@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 """
 script to distribute an archive to web servers
+based on 1-pack_web
 """
 from fabric.api import *
 from os import path
 
-env.user = 'ubuntu'
 env.hosts = ['54.144.197.148', '52.204.61.125']
-env.key = '~/.ssh/school'
 
 
 def do_deploy(archive_path):
