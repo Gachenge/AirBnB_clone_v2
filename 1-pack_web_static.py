@@ -11,10 +11,10 @@ def do_pack():
     """pack all web static into a tgz archive"""
     date = datetime.now().strftime("%Y%m%d%H%M%S")
     file = "versions/web_static_{}.tgz".format(date)
-    
+
     try:
         local("mkdir versions")
         local("tar -cvzf {} web_static".format(file))
         return file
-    except:
+    except Exception:
         return None
