@@ -20,7 +20,9 @@ def do_deploy(archive_path):
         run('mkdir -p /data/web_static/releases/{}/'.format(ext))
         run('tar -xzf /tmp/{} -C /data/web_static/releases/{}/'.format(file, ext))
         run('rm -rf /tmp/{}'.format(file))
-        run('ln -sf /data/web_static/releases/{}/ /data/web_static/current'.format(ext))
+        run('rm -rf /data/web_static/current')
+        run('ln -s /data/web_static/releases/{}/ /data/web_static/current'.format(ext))
         return True
     except Exception:
         return False
+    
