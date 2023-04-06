@@ -9,10 +9,12 @@ env.user = 'ubuntu'
 env.hosts = ['54.144.197.148', '52.204.61.125']
 env.key = '~/.ssh/school'
 
+
 def do_deploy(archive_path):
+    """deploy web static to the servers"""
     if not path.exists(archive_path):
         return False
-    
+
     try:
         put(archive_path, '/tmp/')
         file = path.split("/")[-1]
@@ -26,4 +28,4 @@ def do_deploy(archive_path):
         run('rm -rf {}{}/web_static'.format(path, ext))
         return True
     except Exception:
-        return False        
+        return False
