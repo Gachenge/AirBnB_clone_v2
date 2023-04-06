@@ -13,8 +13,8 @@ def do_pack():
     file = "versions/web_static_{}.tgz".format(date)
 
     try:
-        local("mkdir versions")
-        local("tar -cvzf {} web_static".format(file))
+        local("mkdir -p versions")
+        local("tar -cvzf {} web_static/".format(file))
         return file
     except Exception:
         return None
