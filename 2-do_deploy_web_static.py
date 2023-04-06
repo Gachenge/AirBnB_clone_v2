@@ -13,18 +13,14 @@ def do_deploy(archive_path):
     """deploy web static to the servers"""
     if not path.exists(archive_path):
         return False
-
     try:
-        put(archive_path, '/tmp/')
-        file = path.split("/")[-1]
-        ext = file.split(".")[0]
-        path = "/data/web_static/releases/"
-        run('mkdir -p {}{}'.format(path, ext))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file, path, ext))
-        run('mv {1}{2}/web_static/* {1}{2}/'.format(path, ext))
-        run('ln -sf {}{}/ /data/web_static/current'.format(path, ext))
+        put(archive_path, '/tmp')
+        file = path.basename(archive_path)
+        ext = path.splitext(file)[0]
+        run('mkdir -p /data/web_static/releases/{}/'.format(ext))
+        run('tar -xzf /tmp/{} -C /data/web_static/releases/{}/'.format(file, ext))
         run('rm -rf /tmp/{}'.format(file))
-        run('rm -rf {}{}/web_static'.format(path, ext))
+        run('ln -sf /data/web_static/releases/{}/ /data/web_static/current'.format(ext))
         return True
     except Exception:
         return False
