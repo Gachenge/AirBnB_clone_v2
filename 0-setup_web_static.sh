@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 # set up web servers for deployment of web_static
 
-apt update
-apt install -y nginx
+sudo apt update
+sudo apt install -y nginx
 
-mkdir -p /data/web_static/releases/test
-mkdir /data/web_static/shared
+sudo mkdir -p /data/web_static/releases/test
+sudo mkdir /data/web_static/shared
 
 echo "Hello World" > /data/web_static/releases/test/index.html
 
-ln -sf /data/web_static/releases/test /data/web_static/current
+sudo ln -sf /data/web_static/releases/test /data/web_static/current
 
-chown -R ubuntu:ubuntu /data
+sudo chown -R ubuntu:ubuntu /data
 
-printf %s "server {
+sudo printf %s "server {
     listen  80 default_server;
     listen  [::]:80 default_server;
     add_header X-Served-By $HOSTNAME;
@@ -35,4 +35,4 @@ printf %s "server {
     }
 }" > /etc/nginx/sites-available/default
 
-service nginx restart
+sudo service nginx restart
