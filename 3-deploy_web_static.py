@@ -5,7 +5,7 @@ web servers
 from os.path import exists
 from fabric.api import *
 from datetime import datetime
-env.hosts = ['54.144.197.148', '52.204.61.125']
+env.hosts = ['52.86.27.65', '100.25.13.63']
 
 
 def do_pack():
