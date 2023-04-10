@@ -5,7 +5,11 @@ web servers
 from os.path import exists
 from fabric.api import *
 from datetime import datetime
+
+env.use_ssh_config = True
 env.hosts = ['52.86.27.65', '100.25.13.63']
+env.user = 'ubuntu'
+env.key_filename = '~/.ssh/school'
 
 
 def do_pack():
