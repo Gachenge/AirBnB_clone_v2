@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-from flask import Flask
 """
 script that starts a flask web app
 host = 0.0.0.0 on port 5000
 no debug
 """
+from flask import Flask
 
 app = Flask(__name__)
 

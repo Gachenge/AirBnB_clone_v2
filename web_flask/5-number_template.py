@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-from flask import Flask
-from flask import render_template
-
 """
 script that starts a flask web app
 host = 0.0.0.0 on port 5000
 no debug
 """
+from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
