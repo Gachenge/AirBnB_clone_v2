@@ -50,8 +50,10 @@ def temnum(n):
 @app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
 def eveodd(n):
     if n % 2 == 0:
-        return render_template("6-number_odd_or_even.html", evod=n)
-    return render_template("6-number_odd_or_even.html", evod=n)
+        even = '{} is even'.format(n)
+    else:
+        even = '{} is odd'.format(n)
+    return render_template("6-number_odd_or_even.html", evod=even)
 
 
 if __name__ == "__main__":
