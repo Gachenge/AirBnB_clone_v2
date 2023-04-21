@@ -1,23 +1,24 @@
 #!/usr/bin/env bash
 # set up web servers for deployment of web_static
 
-sudo apt update
-sudo apt install -y nginx
+apt update
+apt install -y nginx
 
-sudo mkdir -p /data/web_static/releases/test
-sudo mkdir /data/web_static/shared
+mkdir -p /data/web_static/releases/test/
+mkdir -p /data/web_static/shared/
 
 echo "Hello World" > /data/web_static/releases/test/index.html
 
-sudo ln -sf /data/web_static/releases/test /data/web_static/current
+rm -f /data/web_static/current
+ln -s /data/web_static/releases/test/ /data/web_static/current
 
-sudo chown -R ubuntu:ubuntu /data
+chown -R ubuntu:ubuntu /data/
 
-sudo printf %s "server {
+printf %s "server {
     listen  80 default_server;
     listen  [::]:80 default_server;
     add_header X-Served-By $HOSTNAME;
-    root    /etc/nginx/html;
+    root    /var/www/html;
     index   index.html index.htm;
 
     location /hbnb_static {
@@ -35,4 +36,4 @@ sudo printf %s "server {
     }
 }" > /etc/nginx/sites-available/default
 
-sudo service nginx restart
+service nginx restart
