@@ -4,6 +4,8 @@ from flask import render_template
 
 """
 script that starts a flask web app
+host = 0.0.0.0 on port 5000
+no debug
 """
 
 app = Flask(__name__)
@@ -12,14 +14,12 @@ app = Flask(__name__)
 @app.route("/", strict_slashes=False)
 def hello():
     """display a greeting message"""
-
     return ('Hello HBNB!')
 
 
 @app.route("/hbnb", strict_slashes=False)
 def rude():
     """no greeting"""
-
     return ('HBNB')
 
 
