@@ -62,3 +62,9 @@ class BaseModel:
         """ delete object
         """
         models.storage.delete(self)
+
+    def __str__(self):
+        """string representation of the basemodel"""
+        bm = self.__dict__.copy()
+        bm.pop("_sa_instance_state", None)
+        return ("[{}] ({}) {}".format(type(self).__name__, self.id, bm))
