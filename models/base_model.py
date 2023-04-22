@@ -55,6 +55,7 @@ class BaseModel:
         myDict["__class__"] = str(type(self).__name__)
         myDict["created_at"] = self.created_at.isoformat()
         myDict["updated_at"] = self.updated_at.isoformat()
+        myDict.pop("_sa_instance_state", None)
         return myDict
 
     def delete(self):

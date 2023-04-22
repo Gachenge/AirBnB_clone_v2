@@ -15,7 +15,7 @@ from sqlalchemy import String
 from sqlalchemy import Table
 
 
-associations = Table("place_amenity", Base.metadata,
+association = Table("place_amenity", Base.metadata,
                      Column("place_id", String(60),
                             ForeignKey("places.id"),
                             primary_key=True,
