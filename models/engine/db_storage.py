@@ -14,9 +14,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import scoped_session
 
-classes = {"Amenity": Amenity, "City": City, "Place": Place, "Review": Review,
-           "State": State, "User": User}
-
 class DBStorage:
     """Database storage
     __engine: sqlalchemy engine
@@ -39,19 +36,18 @@ class DBStorage:
 
     def all(self, cls=None):
         """items in current session"""
-        if not self.__session:
-            self.reload()
-        objs = {}
-        if isinstance(cls, str):
-            cls = classes.get(cls, None)
-        if cls:
-            for obj in self.__session.query(cls):
-                objs[obj.__class__.__name__ + '.' + obj.id] = obj
+        if cls is None:
+            obj = self.__session.query(State).all()
+            obj.extend(self.__session.query(City).all())
+            obj.extend(self.__session.query(User).all())
+            obj.extend(self.__session.query(Place).all())
+            obj.extend(self.__session.query(Review).all())
+            obj.extend(self.__session.query(Amenity).all())
         else:
-            for cls in classes.values():
-                for obj in self.__session.query(cls):
-                    objs[obj.__class__.__name__ + '.' + obj.id] = obj
-        return (objs)
+            if type(cls) == str:
+                cls = eval(cls)
+            obj = self.__session.query(cls)
+        return ({"{}.{}".format(type(ob).__name__, ob.id): ob for ob in obj})
 
     def new(self, obj):
         """add a new obj to the database"""
