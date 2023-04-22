@@ -14,6 +14,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import scoped_session
 
+
 class DBStorage:
     """Database storage
     __engine: sqlalchemy engine
