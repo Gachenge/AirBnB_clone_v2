@@ -38,11 +38,6 @@ class BaseModel:
                 if key != "__class__":
                     setattr(self, key, value)
 
-    def __str__(self):
-        """return the string representation"""
-        return "[{}] ({}) {}".format(type(self).__name__, self.id,
-                                     self.__dict__.copy())
-
     def save(self):
         """updates the updated_at time stamp"""
         self.updated_at = datetime.now()
