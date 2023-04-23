@@ -19,6 +19,7 @@ def teardown(exception=None):
     """remove each sqlalchemy session after each request"""
     storage.close()
 
+
 @app.route("/states_list", strict_slashes=False)
 def sortstate():
     """display a list of states"""
