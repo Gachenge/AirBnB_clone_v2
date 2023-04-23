@@ -19,7 +19,6 @@ def hello():
 @app.route("/hbnb", strict_slashes=False)
 def rude():
     """no greeting"""
-
     return ('HBNB')
 
 
