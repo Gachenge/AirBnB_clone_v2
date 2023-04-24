@@ -15,16 +15,10 @@ class State(BaseModel, Base):
     Attributes:
         name: input name
     """
-    if getenv('HBNB_TYPE_STORAGE') == 'db':
-        __tablename__ = "states"
-        name = Column(String(128), nullable=False)
-        cities = relationship("City", cascade="delete",
-                              backref="state")
-    else:
-        name = ""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    __tablename__ = "states"
+    name = Column(String(128), nullable=False)
+    cities = relationship("City", cascade="delete",
+                          backref="state")
 
     if getenv("HBNB_TYPE_STORAGE") != "db":
         @property

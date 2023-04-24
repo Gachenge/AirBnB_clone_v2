@@ -8,10 +8,7 @@ from sqlalchemy import Column
 from sqlalchemy import String
 from sqlalchemy import DateTime
 
-if getenv("HBNB_TYPE_STORAGE") == 'db':
-    Base = declarative_base()
-else:
-    Base = object
+Base = declarative_base()
 
 
 class BaseModel:
