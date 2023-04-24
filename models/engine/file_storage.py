@@ -66,3 +66,13 @@ class FileStorage:
     def close(self):
         """reload"""
         self.reload()
+
+    def retr(self, cls, id):
+        """getter for objects"""
+        if isinstance(cls, str) and id is not None and\
+            type(id) is str:
+            key = cls + '.' + id
+            obj = self.__objects.get(key, None)
+            return obj
+        else:
+            return None
